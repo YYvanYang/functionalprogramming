@@ -136,8 +136,6 @@ layout: center
      sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
    ></iframe>
 
-
-
 ---
 layout: center
 ---
@@ -149,9 +147,18 @@ layout: center
   </div>
 
 ---
-layout: image-right
-image: https://source.unsplash.com/collection/94734521/1920x1080
----
+
+# 副作用
+
+<iframe src="https://codesandbox.io/embed/peaceful-rosalind-tles0?fontsize=14&hidenavigation=1&theme=dark"
+     style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;"
+     title="peaceful-rosalind-tles0"
+     allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+     sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
+   ></iframe>
+
+[-] [Detecting unexpected side effects](https://reactjs.org/docs/strict-mode.html#detecting-unexpected-side-effects)
+[-] [In StrictMode, the useState() initializer function is called twice](https://github.com/facebook/react/issues/20090#issuecomment-715927125)
 
 # 为什么推荐函数式编程？
 
