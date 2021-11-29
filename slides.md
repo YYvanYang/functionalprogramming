@@ -332,3 +332,10 @@ do。尾递归才是最纯的迭代方式。
 > No code is the best way to write secure and reliable applications. Write nothing; deploy nowhere.
 
 [^2]: [No Code](https://github.com/kelseyhightower/nocode)
+
+---
+layout: center
+class: 'text-center pb-5 :'
+---
+
+# Thank You!
