@@ -54,9 +54,9 @@ image: ./jw_lambda.jpg
 
 - 纯粹的(pure)
 - 无状态(stateless)
+- 无副作用(no side effect)
+- 不变式(immutable)
 - 高阶(higher-order)
-- 副作用(side effect)
-- 不可变(immutable)
 - 柯里化(currying)
 - 组合(compose)
 
@@ -119,9 +119,29 @@ layout: center
 - 如果函数的调用参数相同，则永远返回相同的结果。它不依赖于程序执行期间函数外部任何状态或数据的变化，必须只依赖于其输入参数。
 - 该函数不会产生任何可观察的副作用，例如网络请求，输入和输出设备或数据突变（mutation）。
 
+```mermaid
+flowchart LR
+    Input --> f["f()"] --> Output
+```
+
 <v-click>
 
 > 2句话总结：相同输入返回相同输出，没有改变外部的环境！
+
+</v-click>
+
+---
+layout: image-right
+image: https://source.unsplash.com/collection/94134561/1920x1080
+---
+# 为什么推荐函数式编程？
+
+### 价值所在
+<v-click>
+
+- 更加可预测性
+- 更易被测试/调试
+- 更加可靠（幂等操作）
 
 </v-click>
 
@@ -169,7 +189,7 @@ layout: center
 
   <img border="rounded" src="/i_puritea-recipe.png">
 
-  <div class="text-center text-green-500">
+  <div class="text-center text-stroke-blue-500 p-4">
   <span>五香茶</span>
   </div>
 
@@ -187,17 +207,6 @@ layout: center
 [-] [Detecting unexpected side effects](https://reactjs.org/docs/strict-mode.html#detecting-unexpected-side-effects)
 [-] [In StrictMode, the useState() initializer function is called twice](https://github.com/facebook/react/issues/20090#issuecomment-715927125)
 
-# 为什么推荐函数式编程？
-
-### 价值所在
-<v-click>
-
-- 更加可预测性
-- 更易被测试/调试
-- 更加可靠（幂等操作）
-
-</v-click>
-
 ---
 
 # 高阶函数
@@ -209,6 +218,8 @@ layout: center
 ---
 
 # 闭包之函数柯里化
+
+>将一个函数从可调用的`f(a, b, c)`转换为可调用的`f(a)(b)(c)`。
 
 ```js
 function curry(func) {
@@ -243,15 +254,75 @@ alert( curriedSum(1)(2)(3) ); // 6，全柯里化
 
 ---
 
-# 不可变(Immutability)
+# 不变式(Immutability)
 
-- 写拷贝(Copy-on-Write)
+### 写拷贝(Copy-on-Write)
 
-todo
+<div class="grid grid-cols-2 gap-x-4 gap-y-4">
+
+<div>
+
+###### Original mutating version
+
+```ts {8}
+function remove_item_by_name(cart, name) {
+  let idx = null;
+  for(let i = 0; i < cart.length; i++) {
+    if(cart[i].name === name) {
+      idx = i;
+    }
+  }
+  if(idx !== null) {
+    cart.splice(idx, 1);
+  }
+}
+```
+
+</div>
+
+<div>
+
+###### Copy-on-write version
+
+```ts {2,9}
+function remove_item_by_name(cart, name) {
+  const new_cart = cart.slice();
+  let idx = null;
+  for(let i = 0; i < new_cart.length; i++) {
+    if(new_cart[i].name === name) {
+      idx = i;
+    }
+  }
+  if(idx !== null) {
+    new_cart.splice(idx, 1);
+  }
+  return new_cart;
+}
+```
+
+</div>
+
+
+</div>
 
 ---
 
 # 纯之门路
 
-- todo
+### 来自Douglas Crockford的《JavaScript悟道》中对JavaScript的吐槽
+* 首先，必须丢弃所有的赋值运算符，以及 var 和 let 语句，只保留 const 语句。我们通过
+const 来初始化变量，并且不再改变它的值。
+* 接着，需要丢弃可以修改对象内容的运算符和方法，如 delete 运算符和 Object.assign
+方法等；还要抛弃可以更改数组内容的方法，如 splice 和 sort 等。
+* for 语句的原始意图就是修改归纳变量，所以也要被丢弃。同理，我们还要丢弃 while 和
+do。尾递归才是最纯的迭代方式。
+* 然后，我们还要弃用 Date 构造函数。每次调用它都会得到不同的值，这就是不纯的一个表
+现。同理，我们还应该弃用 Math.random，你甚至无法知道它的返回值会是什么。
+* 最后，切断网线吧。
 
+<br />
+
+### 最终幻想：No Code[^2]
+> No code is the best way to write secure and reliable applications. Write nothing; deploy nowhere.
+
+[^2]: [No Code](https://github.com/kelseyhightower/nocode)
