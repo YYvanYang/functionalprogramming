@@ -138,7 +138,7 @@ flowchart LR
 
 ---
 layout: image-right
-image: https://source.unsplash.com/collection/94134561/1920x1080
+image: https://source.unsplash.com/collection/94734531/1920x1080
 ---
 # 为什么推荐函数式编程？
 
