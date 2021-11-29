@@ -43,7 +43,7 @@ layout: center
 
 ---
 layout: image-left
-image: https://source.unsplash.com/collection/94734566/1920x1080
+image: ./jw_lambda.jpg
 ---
 
 # 什么是函数式编程？
@@ -121,9 +121,36 @@ layout: center
 
 <v-click>
 
-> 2句话总结：相同输入相同输出，没有改变外部的环境！
+> 2句话总结：相同输入返回相同输出，没有改变外部的环境！
 
 </v-click>
+
+---
+layout: image-right
+image: https://source.unsplash.com/collection/94734561/1920x1080
+---
+
+# 纯与不纯
+
+
+###### 不纯 ? or 纯 ?
+
+```js
+function getDate() {
+  return new Date().toDateString();
+}
+```
+
+<br />
+
+
+###### 不纯 ? or 纯 ?
+
+```js
+function getDate (y, m, d) {
+  return new Date(y, m, d).toDateString();
+}
+```
 
 ---
 
@@ -148,7 +175,7 @@ layout: center
 
 ---
 
-# 副作用
+# 似曾相识的副作用
 
 <iframe src="https://codesandbox.io/embed/peaceful-rosalind-tles0?fontsize=14&hidenavigation=1&theme=dark"
      style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;"
@@ -171,42 +198,13 @@ layout: center
 
 </v-click>
 
-
----
-layout: image-right
-image: https://source.unsplash.com/collection/94734561/1920x1080
----
-
-# 纯与不纯
-
-
-###### 不纯 ? or 纯 ?
-
-```js
-function getDate() {
-  return new Date().toDateString();
-}
-```
-
-<br />
-
-
-###### 不纯 ? or 纯 ?
-
-```js
-function getDate (year, month, day) {
-  return new Date(year, month, day).toDateString();
-}
-```
-
----
-layout: image-right
-image: https://source.unsplash.com/collection/94734121/1920x1080
 ---
 
 # 高阶函数
 
 - filter, map, reduce
+
+<img class="h-100 inline-block" src="/hof.png">
 
 ---
 
