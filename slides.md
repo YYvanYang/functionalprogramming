@@ -41,7 +41,7 @@ layout: center
   - 为什么推荐函数式编程？
   - 高阶函数(higher-order function)
   - 闭包之函数柯里化(Currying)
-  - 不可变(Immutability)
+  - 不变式(Immutability)
   - 纯之门路
 
   </div>
@@ -54,19 +54,19 @@ image: ./jw_lambda.jpg
 
 # 什么是函数式编程？
 
-### 特性
+### 关键字
 
-<div v-click>
+<v-clicks>
 
 - 纯粹的(pure)
 - 无状态(stateless)
-- 无副作用(no side effect)
-- 不变式(immutable)
+- 副作用(side effect)
+- 不可变(immutable)
 - 高阶(higher-order)
 - 柯里化(currying)
 - 组合(compose)
 
-</div>
+</v-clicks>
 
 ---
 layout: center
@@ -74,7 +74,8 @@ layout: center
 
 # 编程范式(Programming paradigm)[^1]
 
-<br />
+>编程范式是程序员看待程序应该具有的观点，代表了程序设计者认为程序应该如何被构建和执行的看法。
+
 <br />
 
 <div class="grid grid-cols-2 gap-x-4 gap-y-4">
@@ -112,6 +113,14 @@ layout: center
 
 </div>
 
+<div>
+
+### 事件化编程
+
+- 回调函数、事件循环（event loop）
+
+</div>
+
 </div>
 
 [^1]: [再谈编程范式—程序语言背后的思想](https://imweb.io/topic/5cde5770e363b77a0edeb874)
@@ -122,19 +131,23 @@ layout: center
 
 # 函数式编程之根---纯函数(pure functions)
 
+<v-click>
+
 - 如果函数的调用参数相同，则永远返回相同的结果。它不依赖于程序执行期间函数外部任何状态或数据的变化，必须只依赖于其输入参数。
 - 该函数不会产生任何可观察的副作用，例如网络请求，输入和输出设备或数据突变（mutation）。
+
+</v-click>
+
+<v-after>
 
 ```mermaid
 flowchart LR
     Input --> f["f()"] --> Output
 ```
 
-<v-click>
-
 > 2句话总结：相同输入返回相同输出，没有改变外部的环境！
 
-</v-click>
+</v-after>
 
 ---
 layout: image-right
@@ -143,13 +156,13 @@ image: https://source.unsplash.com/collection/94734531/1920x1080
 # 为什么推荐函数式编程？
 
 ### 价值所在
-<v-click>
+<v-clicks>
 
 - 更加可预测性
 - 更易被测试/调试
 - 更加可靠（幂等操作）
 
-</v-click>
+</v-clicks>
 
 ---
 layout: image-right
@@ -270,7 +283,9 @@ alert( curriedSum(1)(2)(3) ); // 6，全柯里化
 
 ###### Original mutating version
 
-```ts {8}
+<div v-click-hide>
+
+```ts
 function remove_item_by_name(cart, name) {
   let idx = null;
   for(let i = 0; i < cart.length; i++) {
@@ -286,11 +301,33 @@ function remove_item_by_name(cart, name) {
 
 </div>
 
+<div v-after>
+
+```ts {9}
+function remove_item_by_name(cart, name) {
+  let idx = null;
+  for(let i = 0; i < cart.length; i++) {
+    if(cart[i].name === name) {
+      idx = i;
+    }
+  }
+  if(idx !== null) {
+    cart.splice(idx, 1);
+  }
+}
+```
+
+</div>
+
+</div>
+
 <div>
 
 ###### Copy-on-write version
 
-```ts {2,9}
+<div v-click-hide>
+
+```ts
 function remove_item_by_name(cart, name) {
   const new_cart = cart.slice();
   let idx = null;
@@ -305,11 +342,39 @@ function remove_item_by_name(cart, name) {
   return new_cart;
 }
 ```
+</div>
+
+<div v-after>
+
+```ts {2,10,12}
+function remove_item_by_name(cart, name) {
+  const new_cart = cart.slice();
+  let idx = null;
+  for(let i = 0; i < new_cart.length; i++) {
+    if(new_cart[i].name === name) {
+      idx = i;
+    }
+  }
+  if(idx !== null) {
+    new_cart.splice(idx, 1);
+  }
+  return new_cart;
+}
+```
+</div>
 
 </div>
 
 
 </div>
+
+<style>
+.slidev-vclick-hidden {
+  opacity: 0;
+  pointer-events: none;
+  display:none;
+}
+</style>
 
 ---
 
