@@ -1093,7 +1093,7 @@ dagre@^0.8.5:
 
 date-fns@^2.27.0:
   version "2.27.0"
-  resolved "http://cnpm.800best.com:7001/date-fns/download/date-fns-2.27.0.tgz#e1ff3c3ddbbab8a2eaadbb6106be2929a5a2d92b"
+  resolved "https://registry.yarnpkg.com/date-fns/download/date-fns-2.27.0.tgz#e1ff3c3ddbbab8a2eaadbb6106be2929a5a2d92b"
   integrity sha1-4f88Pdu6uKLqrbthBr4pKaWi2Ss=
 
 debug@2.6.9:
