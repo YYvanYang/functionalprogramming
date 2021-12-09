@@ -19,7 +19,7 @@ Yvan Yang
 
 <div class="abs-bl mx-14 my-12 flex">
   <div class="ml-3 flex flex-col text-left">
-    <div class="text-sm opacity-50">Dec. 1st, 2021</div>
+    <div class="text-sm opacity-50"><Today /></div>
   </div>
 </div>
 
